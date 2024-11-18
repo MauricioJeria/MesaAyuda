@@ -17,7 +17,7 @@ export const environment = {
   }
 };
 
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(environment.firebaseConfig);
 const analytics = getAnalytics(app);
 /*
  * For easier debugging in development mode, you can import the following file
