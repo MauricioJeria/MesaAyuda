@@ -1,5 +1,6 @@
 export interface usuarioCompleto{
-    nombre: string,
     email: string,
+    usuario: string,
     rol: string
 }
+

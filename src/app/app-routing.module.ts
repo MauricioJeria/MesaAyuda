@@ -1,5 +1,9 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginPage } from './paginas/login/login.page';
+import { RegistrarPage } from './paginas/registrar/registrar.page';
+import { TicketGeneratePage } from './paginas/ticket-generate/ticket-generate.page';
+import { TicketListPage } from './paginas/ticket-list/ticket-list.page';
 
 const routes: Routes = [
   {
@@ -9,24 +13,28 @@ const routes: Routes = [
   },
   {
     path: 'inicio',
-    loadChildren: () => import('./paginas/inicio/inicio.module').then( m => m.InicioPageModule)
-  },
-  {
-    path: 'registrar',
-    loadChildren: () => import('./paginas/registrar/registrar.module').then( m => m.RegistrarPageModule)
+    loadChildren: () => import('./paginas/inicio/inicio.module').then(m => m.InicioPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
+    component: LoginPage
   },
   {
-    path: 'ticket-list',
-    loadChildren: () => import('./paginas/ticket-list/ticket-list.module').then( m => m.TicketListPageModule)
+    path: 'registrar',
+    component: RegistrarPage
   },
   {
     path: 'ticket-generate',
-    loadChildren: () => import('./paginas/ticket-generate/ticket-generate.module').then( m => m.TicketGeneratePageModule)
+    component: TicketGeneratePage
   },
+  {
+    path: 'ticket-list',
+    component: TicketListPage
+  },
+
+
+
+
 ];
 
 @NgModule({

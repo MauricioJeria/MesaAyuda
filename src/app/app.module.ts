@@ -1,11 +1,10 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from '@angular/common';
 
 // Importaciones de Firebase
 import { importProvidersFrom } from '@angular/core';
@@ -13,17 +12,33 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from '../environments/environment';
+import { CompartidosModule } from './compartidos/compartidos.module';
+import { LoginPage } from './paginas/login/login.page';
+import { RegistrarPage } from './paginas/registrar/registrar.page';
+import { TicketGeneratePage } from './paginas/ticket-generate/ticket-generate.page';
+import { TicketListPage } from './paginas/ticket-list/ticket-list.page';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,
+    LoginPage,
+    RegistrarPage,
+    TicketGeneratePage,
+    TicketListPage
+  ],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
+    IonicModule,
+    CommonModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    CompartidosModule,
+    FormsModule
   ],
+  exports: [AppComponent],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],

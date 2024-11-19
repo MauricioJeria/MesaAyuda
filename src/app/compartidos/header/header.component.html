@@ -1,21 +1,10 @@
-<header class="header-container">
-  <div class="user-info">
-    <span *ngIf="usuarioCompleto; else invitadoTemplate">
-      Bienvenido, {{ usuarioCompleto.usuario}} - {{ usuarioCompleto.rol}}
-    </span>
-    <ng-template #invitadoTemplate>
-      La App mas de Pana
-    </ng-template>
-
-
-
-  <ion-row>
-    <ion-col size = 12>
-    <button *ngIf="usuarioCompleto" (click)="cerrarSesion()" class="logout-button">
-      Cerrar sesión
-    </button>
-  </ion-col>
-</ion-row>
-</div>
-</header>
-
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Bienvenido{{ nombreUsuario ? ', ' + nombreUsuario : '' }}
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cerrarSesion()">Cerrar Sesión</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>

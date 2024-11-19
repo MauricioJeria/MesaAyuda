@@ -1,15 +1,15 @@
 ion-content {
     --background: #1D1D1D;
   }
-  
+
   .custom-card {
     padding: 20px;
     max-width: 400px;
     margin: 0 auto;
-    background-color: #1D1D1D;
+    background-color: #dbdbdb;
     border: 2px solid #2272FF;
     border-radius: 8px;
-  
+
     h2 {
       text-align: center;
       margin-bottom: 30px;
@@ -17,7 +17,7 @@ ion-content {
       font-family: "Lucida Console", Monaco, monospace;
       text-shadow: 0 0 10px rgba(34, 114, 255, 0.7);
     }
-  
+
     .input-slide {
       margin-bottom: 20px;
       position: relative;
@@ -25,18 +25,18 @@ ion-content {
       padding: 10px;
       transition: box-shadow 0.4s ease-out;
       background-color: #1D1D1D;
-  
+
       &:focus-within {
         box-shadow: inset 0 0 0 2px #2272FF;
       }
-  
+
       ion-label {
         color: #2272FF;
         font-family: "Lucida Console", Monaco, monospace;
         font-size: 14px;
         letter-spacing: 1px;
       }
-  
+
       ion-input {
         --padding-start: 0;
         --padding-end: 0;
@@ -45,7 +45,7 @@ ion-content {
         --placeholder-color: rgba(34, 114, 255, 0.7);
       }
     }
-  
+
     .button_slide {
       color: #1D1D1D;
       border: 2px solid #2272FF;
@@ -64,18 +64,18 @@ ion-content {
       -moz-transition: all 0.4s ease-out;
       transition: all 0.4s ease-out;
       text-align: center;
-  
+
       &.slide_left:hover, &.slide_left:focus {
         box-shadow: inset 400px 0 0 0 #1D1D1D;
         color: #2272FF;
       }
-  
+
       &.disabled {
         opacity: 0.5;
         cursor: not-allowed;
       }
     }
-  
+
     .recuperar {
       text-align: center;
       margin-top: 20px;
@@ -84,13 +84,13 @@ ion-content {
       font-family: "Lucida Console", Monaco, monospace;
       font-size: 14px;
       transition: opacity 0.3s ease;
-  
+
       &:hover {
         opacity: 0.7;
       }
     }
   }
-  
+
   ion-spinner {
     vertical-align: middle;
     margin-left: 10px;

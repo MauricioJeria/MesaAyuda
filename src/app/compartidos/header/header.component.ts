@@ -11,11 +11,10 @@ import { usuarioCompleto } from 'src/app/models/usuario.models';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-  usuario: string;
+  nombreUsuario: string  | null = null;
   color: string;
-  user: usuarioCompleto | null;
 
-  private suscripcion: Subscription = new Subscription();
+  private suscripcion = new Subscription();
 
   constructor(
     private authService: AuthService,
@@ -23,14 +22,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private alertController: AlertController
   ) {}
 
-  ngOnInit(): void {
-    const usuarioCompletoSub = this.authService.user$.subscribe(
-      (user) => {
-        this.user = user;
-        this.usuario = user ? user.usuario : '';
-      }
-    );
-    this.suscripcion.add(usuarioCompletoSub);
+  ngOnInit() {
+    this.authService.user$.subscribe((usuario) => {
+      this.nombreUsuario = usuario?.usuario || null;
+    });
   }
 
   async cerrarSesion(): Promise<void> {
@@ -45,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
         {
           text: 'Cerrar Sesión',
           handler: () => {
-            this.authService.salirsesion();
+            this.authService. logout();
             this.router.navigate(['/iniciosesion']);
             this.alertaCierreSesion(
               'Cierre de Sesión',

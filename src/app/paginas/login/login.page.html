@@ -1,40 +1,28 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-<br><br>
-  <div class="custom-card">
-    <h2>Inicio de Sesión</h2>
-
-    <div class="input-slide">
-      <ion-label position="floating">Usuario</ion-label>
-      <ion-input [(ngModel)]="usuario" type="text"></ion-input>
+<div class="login-container">
+  <h2>Iniciar Sesión</h2>
+  <form (ngSubmit)="iniciarSesion()" #loginForm="ngForm">
+    <div>
+      <label for="usuario">Email:</label>
+      <input
+        type="email"
+        id="usuario"
+        [(ngModel)]="email" placeholder
+        name="usuario"
+        required
+      />
     </div>
-
-    <div class="input-slide">
-      <ion-label position="floating">Contraseña</ion-label>
-      <ion-input [(ngModel)]="clave" type="password"></ion-input>
+    <div>
+      <label for="clave">Clave:</label>
+      <input
+        type="password"
+        id="clave"
+        [(ngModel)]="password"
+        name="clave"
+        required
+      />
     </div>
-
-    <div class="button_slide slide_left" (click)="iniciarSe(usuario, clave)" [class.disabled]="isLoading">
-      Iniciar Sesion
-      <ion-spinner *ngIf="isLoading"></ion-spinner>
-    </div>
-
-    <div class="button_slide slide_left" (click)="irARegistrar()">
-      Registrarse
-    </div>
-
-    <p class="recuperar" (click)="irARecuperar()">
-      ¿Olvidaste tu contraseña?
-    </p>
-  </div>
-<br><br>                 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
-</ion-content>
+    <button type="submit" [disabled]="isLoading || loginForm.invalid">
+      {{ isLoading ? 'Cargando...' : 'Iniciar Sesión' }}
+    </button>
+  </form>
+</div>
