@@ -13,7 +13,7 @@ import { usuarioCompleto } from 'src/app/models/usuario.models';
 export class HeaderComponent implements OnInit, OnDestroy {
   usuario: string;
   color: string;
-  usuarioCompleto: usuarioCompleto | null;
+  user: usuarioCompleto | null;
 
   private suscripcion: Subscription = new Subscription();
 
@@ -24,10 +24,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    const usuarioCompletoSub = this.authService.usuarioCompleto$.subscribe(
-      (usuarioCompleto) => {
-        this.usuarioCompleto = usuarioCompleto;
-        this.usuario = usuarioCompleto ? usuarioCompleto.usuario : '';
+    const usuarioCompletoSub = this.authService.user$.subscribe(
+      (user) => {
+        this.user = user;
+        this.usuario = user ? user.usuario : '';
       }
     );
     this.suscripcion.add(usuarioCompletoSub);
