@@ -48,7 +48,7 @@ export class AuthService {
 
 
   // Registro con email y contraseña
-  async register(email: string, password: string, userData?: any) {
+  async register(usuario: string ,email: string, password: string, rol:string, userData?: any) {
     const credential = await this.afAuth.createUserWithEmailAndPassword(email, password);
 
     if (userData && credential.user) {
@@ -59,6 +59,19 @@ export class AuthService {
     }
 
     return credential;
+  }
+  async revEmailExistente(email: string): Promise<boolean> {
+    try {
+      // Obtener los métodos de inicio de sesión asociados al correo
+      const signInMethods = await this.afAuth.fetchSignInMethodsForEmail(email);
+      
+      // Si el array tiene elementos, significa que el correo ya está registrado
+      return signInMethods.length > 0;
+    } catch (error) {
+      // En caso de error (por ejemplo, si el formato del email no es válido)
+      console.error('Error al verificar el correo electrónico', error);
+      throw new Error('Error al verificar el correo electrónico');
+    }
   }
 
   // Inicio de sesión con email y contraseña
