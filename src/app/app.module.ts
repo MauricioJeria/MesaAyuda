@@ -18,13 +18,19 @@ import { RegistrarPage } from './paginas/registrar/registrar.page';
 import { TicketGeneratePage } from './paginas/ticket-generate/ticket-generate.page';
 import { TicketListPage } from './paginas/ticket-list/ticket-list.page';
 import { FormsModule } from '@angular/forms';
+import { PantallaAdminPage } from './paginas/pantalla-admin/pantalla-admin.page';
+import { PantallaColaboradorPage } from './paginas/pantalla-colaborador/pantalla-colaborador.page';
+import { TicketRevisionPage } from './paginas/ticket-revision/ticket-revision.page';
 
 @NgModule({
   declarations: [AppComponent,
     LoginPage,
     RegistrarPage,
     TicketGeneratePage,
-    TicketListPage
+    TicketListPage,
+    PantallaAdminPage,
+    PantallaColaboradorPage,
+    TicketRevisionPage
   ],
   imports: [
     BrowserModule,

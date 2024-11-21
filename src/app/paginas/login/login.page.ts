@@ -29,9 +29,9 @@ export class LoginPage {
       this.isLoading = true;
       const rol = await this.authService.login(this.email, this.password);
       if(rol === 'Admin'){
-        this.router.navigate(['/ticket-list']);
+        this.router.navigate(['/pantalla-admin']);
       }else if (rol === 'Mantenimiento' || rol === 'Operaciones' || rol === 'Ventas' || rol === 'Gerencia'){
-        this.router.navigate(['/ticket-generate']);
+        this.router.navigate(['/pantalla-colaborador']);
       }else {
         alert('CONTACTAR A TI');
       }
