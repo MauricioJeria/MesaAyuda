@@ -31,10 +31,6 @@ const routes: Routes = [
     component: TicketListPage
   },
   {
-    path: '**',
-    component: LoginPage
-  },
-  {
     path: 'pantalla-admin',
     component: PantallaAdminPage
   },
