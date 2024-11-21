@@ -13,7 +13,7 @@ import { AuthService } from 'src/app/firebase/auth.service';
   styleUrls: ['./login.page.scss'],
 
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
   usuario: string = '';
   email: string = '';
   password: string = '';
@@ -22,7 +22,7 @@ export class LoginPage implements OnInit {
 
   constructor(private router: Router, private authService: AuthService) { }
 
-  ngOnInit() {}
+
 
   async iniciarSesion() {
     try {

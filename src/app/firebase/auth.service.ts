@@ -48,23 +48,39 @@ export class AuthService {
 
 
   // Registro con email y contraseña
-  async register(usuario: string ,email: string, password: string, rol:string, userData?: any) {
-    const credential = await this.afAuth.createUserWithEmailAndPassword(email, password);
+  async register(
+    usuario: string,
+    email: string,
+    password: string,
+    rol: string
+  ): Promise<void> {
+    try {
+      const credential = await this.afAuth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
 
-    if (userData && credential.user) {
-      await this.Firestore.collection('users').doc(credential.user.uid).set({
-        email: credential.user.email,
-        ...userData
-      });
+      if (credential.user) {
+        await this.Firestore
+          .collection('usuarios')
+          .doc(credential.user.uid)
+          .set({
+            nombre: usuario,
+            email: credential.user.email,
+            rol: rol,
+          });
+      }
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      throw error;
     }
-
-    return credential;
   }
+
   async revEmailExistente(email: string): Promise<boolean> {
     try {
       // Obtener los métodos de inicio de sesión asociados al correo
       const signInMethods = await this.afAuth.fetchSignInMethodsForEmail(email);
-      
+
       // Si el array tiene elementos, significa que el correo ya está registrado
       return signInMethods.length > 0;
     } catch (error) {
@@ -75,40 +91,39 @@ export class AuthService {
   }
 
   // Inicio de sesión con email y contraseña
-  async login(email: string, password: string) {
+  async login(email: string, password: string): Promise<void> {
     try {
-      const userCredential = await this.FireAuth.signInWithEmailAndPassword(email, password);
+      const userCredential = await this.afAuth.signInWithEmailAndPassword(
+        email,
+        password
+      );
 
       if (userCredential) {
         const userId = userCredential.user?.uid;
-        const userDoc = await firstValueFrom(this.Firestore.collection('usuarios').doc(userId).get());
-        const usuarioCompleto = userDoc.data() as usuarioCompleto ;
+        const userDoc = await firstValueFrom(
+          this.Firestore.collection('usuarios').doc(userId).get()
+        );
+        const usuarioCompleto = userDoc.data() as usuarioCompleto;
 
-        if (!usuarioCompleto) {
-          throw new Error('Usuario no encontrado en la base de datos.');
-        }
-
-        const ruta =
-          usuarioCompleto.rol === 'Admin' ? '/ticket-list' : '/ticket-generate';
-        await this.router.navigate([ruta]);
+        this.userSubject.next(usuarioCompleto);
       }
-    } catch (error: any) {
-      console.error('Error al iniciar sesión:', error?.message || error);
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
       throw error;
     }
   }
 
 
 
-
   // Cerrar sesión
   async logout() {
     await this.afAuth.signOut();
+    this.userSubject.next(null);
   }
 
   // Obtener usuario actual
-  getCurrentUser() {
-    return this.afAuth.currentUser;
+  getCurrentUser(): Observable<usuarioCompleto | null> {
+    return this.user$;
   }
 
   // Verificar estado de autenticación
