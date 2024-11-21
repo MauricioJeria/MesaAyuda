@@ -1,5 +1,8 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/login"></ion-back-button>
+    </ion-buttons>
     <ion-title>Registrar Usuario</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -40,7 +43,10 @@
       <ion-label position="stacked">Rol</ion-label>
       <ion-select [(ngModel)]="rol" name="rol" required>
         <ion-select-option value="Admin">Admin</ion-select-option>
-        <ion-select-option value="Colaborador">Colaborador</ion-select-option>
+        <ion-select-option value="Mantenimiento">Mantenimiento</ion-select-option>
+        <ion-select-option value="Operaciones">Operaciones</ion-select-option>
+        <ion-select-option value="Ventas">Ventas</ion-select-option>
+        <ion-select-option value="Gerencia">Gerencia</ion-select-option>
       </ion-select>
     </ion-item>
 

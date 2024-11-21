@@ -2,7 +2,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tickets"></ion-back-button>
+      <ion-back-button defaultHref="/login"></ion-back-button>
     </ion-buttons>
     <ion-title>Generar Nuevo Ticket</ion-title>
   </ion-toolbar>
@@ -31,21 +31,6 @@
           placeholder="Describa detalladamente el problema"
           rows="4"
         ></ion-textarea>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="stacked">Área / Departamento</ion-label>
-        <ion-select
-          name="department"
-          [(ngModel)]="ticket.department"
-          placeholder="Seleccione departamento"
-          required
-        >
-          <ion-select-option value="mantenimiento">Mantenimiento</ion-select-option>
-          <ion-select-option value="operaciones">Operaciones</ion-select-option>
-          <ion-select-option value="seguridad">Seguridad</ion-select-option>
-          <ion-select-option value="infraestructura">Infraestructura</ion-select-option>
-        </ion-select>
       </ion-item>
 
       <ion-item>

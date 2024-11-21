@@ -30,7 +30,7 @@ export class LoginPage {
       const rol = await this.authService.login(this.email, this.password);
       if(rol === 'Admin'){
         this.router.navigate(['/ticket-list']);
-      }else if (rol === 'Colaborador'){
+      }else if (rol === 'Mantenimiento' || rol === 'Operaciones' || rol === 'Ventas' || rol === 'Gerencia'){
         this.router.navigate(['/ticket-generate']);
       }else {
         alert('CONTACTAR A TI');

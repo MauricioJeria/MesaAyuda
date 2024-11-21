@@ -22,7 +22,7 @@ export class RegistrarPage {
 
 
   yatienescuenta(){
-    this.router.navigate(['/iniciosesion']);
+    this.router.navigate(['/login']);
   }
   async onRegister() {
     try {

@@ -8,12 +8,8 @@ import { TicketListPage } from './paginas/ticket-list/ticket-list.page';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'inicio',
+    redirectTo: 'login',
     pathMatch: 'full'
-  },
-  {
-    path: 'inicio',
-    loadChildren: () => import('./paginas/inicio/inicio.module').then(m => m.InicioPageModule)
   },
   {
     path: 'login',
@@ -31,6 +27,10 @@ const routes: Routes = [
     path: 'ticket-list',
     component: TicketListPage
   },
+  {
+    path: '**',
+    component: LoginPage
+  }
 
 
 
