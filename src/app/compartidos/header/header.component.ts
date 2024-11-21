@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/firebase/auth.service';
-import { usuarioCompleto } from 'src/app/models/usuario.models';
+import { usuarioIn } from 'src/app/models/usuario.models';
 
 @Component({
   selector: 'app-header',

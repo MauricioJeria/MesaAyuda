@@ -13,7 +13,7 @@ import { TicketGeneratePage } from './ticket-generate.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    TicketGeneratePageRoutingModule
+
   ],
   declarations: [TicketGeneratePage]
 })

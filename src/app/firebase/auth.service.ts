@@ -1,3 +1,4 @@
+import { usuarioIn } from 'src/app/models/usuario.models';
 import { Firestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -6,7 +7,6 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import firebase from 'firebase/compat/app';
 import { BehaviorSubject } from 'rxjs';
-import { usuarioCompleto } from '../models/usuario.models';
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
 
 export class AuthService {
   isLoading = false;
-  private userSubject = new BehaviorSubject<usuarioCompleto | null>(null);
+  private userSubject = new BehaviorSubject<usuarioIn | null>(null);
   user$ = this.userSubject.asObservable();
 
   constructor(private afAuth: AngularFireAuth,
@@ -30,7 +30,7 @@ export class AuthService {
         const userDoc = await firstValueFrom(
           this.Firestore.collection('usuarios').doc(user.uid).get()
         );
-        const usuarioCompleto = userDoc.data() as usuarioCompleto;
+        const usuarioCompleto = userDoc.data() as usuarioIn;
         this.userSubject.next(usuarioCompleto);
       } else {
         this.userSubject.next(null);
@@ -38,7 +38,7 @@ export class AuthService {
     });
   }
 
-  setUser(usuario: usuarioCompleto){
+  setUser(usuario: usuarioIn){
     this.userSubject.next(usuario);
   }
 
@@ -70,47 +70,60 @@ export class AuthService {
             rol: rol,
           });
       }
-    } catch (error) {
-      console.error('Error al registrar usuario:', error);
+    } catch (error: any) {
+
+      if (error.code === 'auth/email-already-in-use') {
+        alert('El correo ya está en uso.');
+      } else if (error.code === 'auth/invalid-email') {
+        alert('Formato de correo inválido.');
+      } else if (error.code === 'auth/weak-password') {
+        alert('La contraseña es demasiado débil.');
+      } else {
+        alert('Error al registrar usuario. Inténtalo de nuevo.');
+      }
+      console.error('Error al registrar usuario:', error.message, error.code);
       throw error;
     }
   }
 
   async revEmailExistente(email: string): Promise<boolean> {
     try {
-      // Obtener los métodos de inicio de sesión asociados al correo
       const signInMethods = await this.afAuth.fetchSignInMethodsForEmail(email);
-
-      // Si el array tiene elementos, significa que el correo ya está registrado
       return signInMethods.length > 0;
     } catch (error) {
-      // En caso de error (por ejemplo, si el formato del email no es válido)
       console.error('Error al verificar el correo electrónico', error);
       throw new Error('Error al verificar el correo electrónico');
     }
   }
 
   // Inicio de sesión con email y contraseña
-  async login(email: string, password: string): Promise<void> {
+  async login(email: string, password: string): Promise<string> {
     try {
       const userCredential = await this.afAuth.signInWithEmailAndPassword(
         email,
         password
       );
 
-      if (userCredential) {
+      if (userCredential.user) {
         const userId = userCredential.user?.uid;
         const userDoc = await firstValueFrom(
           this.Firestore.collection('usuarios').doc(userId).get()
         );
-        const usuarioCompleto = userDoc.data() as usuarioCompleto;
-
+        if(!userDoc.exists){
+          throw new Error('No encontraron datos del usuario en Firestore');
+        }
+        const usuarioCompleto = userDoc.data() as usuarioIn;
         this.userSubject.next(usuarioCompleto);
+        return usuarioCompleto.rol;
+      }else{
+        throw new Error('Usuario no autenticado.');
       }
+
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
       throw error;
     }
+    return null;
   }
 
 
@@ -122,7 +135,7 @@ export class AuthService {
   }
 
   // Obtener usuario actual
-  getCurrentUser(): Observable<usuarioCompleto | null> {
+  getCurrentUser(): Observable<usuarioIn | null> {
     return this.user$;
   }
 
@@ -143,4 +156,10 @@ export class AuthService {
   async resetPassword(email: string) {
     await this.afAuth.sendPasswordResetEmail(email);
   }
+
+
+
+  //TEST DE FIRESTORE
+
+
 }

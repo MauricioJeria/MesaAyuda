@@ -1,13 +1,97 @@
+
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>TicketGenerate</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tickets"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Generar Nuevo Ticket</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">TicketGenerate</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <form (ngSubmit)="onSubmitTicket()" #ticketForm="ngForm" class="ticket-form">
+    <ion-list lines="full" class="ion-no-margin">
+      <ion-item>
+        <ion-label position="stacked">Título del Ticket</ion-label>
+        <ion-input
+          type="text"
+          name="title"
+          [(ngModel)]="ticket.title"
+          required
+          placeholder="Ingrese título descriptivo"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Descripción</ion-label>
+        <ion-textarea
+          name="description"
+          [(ngModel)]="ticket.description"
+          required
+          placeholder="Describa detalladamente el problema"
+          rows="4"
+        ></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Área / Departamento</ion-label>
+        <ion-select
+          name="department"
+          [(ngModel)]="ticket.department"
+          placeholder="Seleccione departamento"
+          required
+        >
+          <ion-select-option value="mantenimiento">Mantenimiento</ion-select-option>
+          <ion-select-option value="operaciones">Operaciones</ion-select-option>
+          <ion-select-option value="seguridad">Seguridad</ion-select-option>
+          <ion-select-option value="infraestructura">Infraestructura</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Prioridad</ion-label>
+        <ion-select
+          name="priority"
+          [(ngModel)]="ticket.priority"
+          placeholder="Seleccione prioridad"
+          required
+        >
+          <ion-select-option value="baja">Baja</ion-select-option>
+          <ion-select-option value="media">Media</ion-select-option>
+          <ion-select-option value="alta">Alta</ion-select-option>
+          <ion-select-option value="critica">Crítica</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Ubicación</ion-label>
+        <ion-input
+          type="text"
+          name="location"
+          [(ngModel)]="ticket.location"
+          placeholder="Ingrese ubicación específica"
+        ></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Adjuntar Archivos</ion-label>
+        <ion-input
+          type="file"
+          name="attachments"
+          (change)="onFileSelected($event)"
+          multiple
+        ></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button
+        expand="block"
+        type="submit"
+        [disabled]="!ticketForm.form.valid"
+      >
+        Crear Ticket
+      </ion-button>
+    </div>
+  </form>
 </ion-content>

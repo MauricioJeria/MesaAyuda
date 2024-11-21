@@ -27,7 +27,15 @@ export class LoginPage {
   async iniciarSesion() {
     try {
       this.isLoading = true;
-      await this.authService.login(this.email, this.password);
+      const rol = await this.authService.login(this.email, this.password);
+      if(rol === 'Admin'){
+        this.router.navigate(['/ticket-list']);
+      }else if (rol === 'Colaborador'){
+        this.router.navigate(['/ticket-generate']);
+      }else {
+        alert('CONTACTAR A TI');
+      }
+
     } catch (error: any) {
       alert(error.message || 'Hubo un problema al iniciar sesión.');
     } finally {

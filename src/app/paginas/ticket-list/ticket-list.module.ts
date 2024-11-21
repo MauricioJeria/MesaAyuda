@@ -12,8 +12,7 @@ import { TicketListPage } from './ticket-list.page';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,
-    TicketListPageRoutingModule
+    IonicModule
   ],
   declarations: [TicketListPage]
 })
