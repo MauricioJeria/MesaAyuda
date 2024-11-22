@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { PantallaAdminPageRoutingModule } from './pantalla-admin-routing.module';
-
-import { PantallaAdminPage } from './pantalla-admin.page';
+import { CompartidosModule } from 'src/app/compartidos/compartidos.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PantallaAdminPageRoutingModule
+    CompartidosModule
   ],
-  declarations: [PantallaAdminPage]
+
 })
 export class PantallaAdminPageModule {}

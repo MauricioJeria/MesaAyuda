@@ -15,7 +15,6 @@ import { CompartidosModule } from 'src/app/compartidos/compartidos.module';
     RouterModule,
     CompartidosModule
   ],
-  declarations: [LoginPage],
-  exports: [ LoginPage]
+
 })
 export class LoginPageModule {}

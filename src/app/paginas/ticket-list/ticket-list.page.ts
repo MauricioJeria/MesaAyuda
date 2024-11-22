@@ -23,7 +23,7 @@ interface Ticket {
   templateUrl: './ticket-list.page.html',
   styleUrls: ['./ticket-list.page.scss'],
 })
-export class TicketListPage {
+export class TicketListPage implements OnInit{
   selecionSegmentos: 'en_progreso' | 'resuelto' = 'en_progreso';
   ticketPendiente: Ticket [] = [];
   ticketResuelto: Ticket [] = [];

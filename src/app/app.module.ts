@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
+import { Router, RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,7 @@ import { PantallaAdminPage } from './paginas/pantalla-admin/pantalla-admin.page'
 import { PantallaColaboradorPage } from './paginas/pantalla-colaborador/pantalla-colaborador.page';
 import { TicketRevisionPage } from './paginas/ticket-revision/ticket-revision.page';
 import { TicketDetallePage } from './paginas/ticket-detalle/ticket-detalle.page';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -46,7 +47,9 @@ import { TicketDetallePage } from './paginas/ticket-detalle/ticket-detalle.page'
     AngularFireAuthModule,
     AngularFirestoreModule,
     CompartidosModule,
-    FormsModule
+    FormsModule,
+    RouterModule
+
   ],
   exports: [AppComponent],
   providers: [

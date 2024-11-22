@@ -9,6 +9,7 @@ import firebase from 'firebase/compat/app';
 import { BehaviorSubject } from 'rxjs';
 import { firstValueFrom } from 'rxjs';
 import { Router } from '@angular/router';
+import 'Firebase/auth';
 
 @Injectable({
   providedIn: 'root'
@@ -113,6 +114,13 @@ export class AuthService {
           throw new Error('No encontraron datos del usuario en Firestore');
         }
         const usuarioCompleto = userDoc.data() as usuarioIn;
+        if(!usuarioCompleto.rol){
+          throw new Error('Rol no definido para el usuario.');
+        }
+
+        //test de funcionalidad
+        console.log("Rol del usuario:", usuarioCompleto.rol);
+
         this.userSubject.next(usuarioCompleto);
         return usuarioCompleto.rol;
       }else{

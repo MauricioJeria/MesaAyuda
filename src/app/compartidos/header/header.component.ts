@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
             this.usuarioAutenticado = false;
             this.nombreUsuario = null;
-            this.router.navigate(['/iniciosesion']);
+            this.router.navigate(['/login']);
 
             this.alertaCierreSesion('Cierre de Sesión', 'Has salido de la Aplicación');
           },

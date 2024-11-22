@@ -15,7 +15,6 @@ import { RouterModule } from '@angular/router';
     CompartidosModule
 
   ],
-  declarations: [RegistrarPage],
-  exports: [RegistrarPage]
+
 })
 export class RegistrarPageModule {}

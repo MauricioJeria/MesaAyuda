@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { TicketRevisionPageRoutingModule } from './ticket-revision-routing.module';
-
-import { TicketRevisionPage } from './ticket-revision.page';
+import { CompartidosModule } from 'src/app/compartidos/compartidos.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TicketRevisionPageRoutingModule
+    CompartidosModule
   ],
-  declarations: [TicketRevisionPage]
+
 })
 export class TicketRevisionPageModule {}

@@ -28,6 +28,8 @@ export class LoginPage {
     try {
       this.isLoading = true;
       const rol = await this.authService.login(this.email, this.password);
+      // Verifica que rol sea el esperado
+      console.log("Rol obtenido después de login:", rol);
       if(rol === 'Admin'){
         this.router.navigate(['/pantalla-admin']);
       }else if (rol === 'Mantenimiento' || rol === 'Operaciones' || rol === 'Ventas' || rol === 'Gerencia'){
@@ -35,7 +37,6 @@ export class LoginPage {
       }else {
         alert('CONTACTAR A TI');
       }
-
     } catch (error: any) {
       alert(error.message || 'Hubo un problema al iniciar sesión.');
     } finally {

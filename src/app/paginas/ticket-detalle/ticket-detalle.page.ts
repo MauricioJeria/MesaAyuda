@@ -1,31 +1,23 @@
+import { TicketService } from './../../servicios/ticket.service';
 import { Firestore } from '@angular/fire/firestore';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { LoadingController, ToastController } from '@ionic/angular';
 import { NgModule } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { Ticket } from 'src/app/models/ticket.model';
 
 
 
 
-interface Ticket {
-  id?: string;
-  title: string;
-  description: string;
-  priority: string;
-  location?: string;
-  attachments?: string[];
-  createdAt: Date;
-  status: 'abierto' | 'en_progreso' | 'resuelto' | 'cerrado';
-  createdBy: string;
-}
 
 @Component({
   selector: 'app-ticket-detalle',
   templateUrl: './ticket-detalle.page.html',
   styleUrls: ['./ticket-detalle.page.scss'],
 })
-export class TicketDetallePage{
+export class TicketDetallePage implements OnInit{
   ticket: Ticket | null = null;
 
   constructor(
@@ -33,12 +25,19 @@ export class TicketDetallePage{
     private router: Router,
     private Firestore: AngularFirestore,
     private loadingController: LoadingController,
-    private toastController: ToastController
+    private toastController: ToastController,
+    private TicketService: TicketService,
   ) { }
 
   ngOnInit() {
-    this.cargaDetalleTicket();
+    const ticketId = this.route.snapshot.paramMap.get('id');
+    if(ticketId) {
+      this.TicketService.obtenerTicketPorId(ticketId).subscribe((ticket: Ticket) => {
+        this.ticket = ticket;
+      });
+    }
   }
+
 
   async cargaDetalleTicket() {
     const loading = await this.loadingController.create({ message: 'Cargando detalles...' });
@@ -82,4 +81,16 @@ export class TicketDetallePage{
     });
     toast.present();
   }
-}
+
+  obtenerTicketsPendientes() {
+    return this.Firestore.collection('tickets',
+      ref => ref.where('status', '==', 'pendiente')
+    ).valueChanges({ idField: 'id' }) as Observable<Ticket[]>;;
+
+  }
+
+
+  }
+
+
+

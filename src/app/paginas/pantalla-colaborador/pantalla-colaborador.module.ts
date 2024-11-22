@@ -1,20 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { PantallaColaboradorPageRoutingModule } from './pantalla-colaborador-routing.module';
-
-import { PantallaColaboradorPage } from './pantalla-colaborador.page';
+import { CompartidosModule } from 'src/app/compartidos/compartidos.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PantallaColaboradorPageRoutingModule
+    CompartidosModule
   ],
-  declarations: [PantallaColaboradorPage]
+
 })
 export class PantallaColaboradorPageModule {}

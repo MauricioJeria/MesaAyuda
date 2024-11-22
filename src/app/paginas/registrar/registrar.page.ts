@@ -28,7 +28,7 @@ export class RegistrarPage {
     try {
       await this.authService.register(this.usuario, this.email, this.password, this.rol);
       alert('Usuario registrado con éxito.');
-      this.router.navigate(['/login']); // Redirigir al login después del registro
+      this.router.navigate(['/login']);
     } catch (error) {
       console.error('Error al registrar usuario:', error);
       alert('Hubo un error al registrar el usuario.');

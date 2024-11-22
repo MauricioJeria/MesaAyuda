@@ -1,9 +1,22 @@
 <app-header></app-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">pantallaAdmin</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Estadísticas</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>Total: {{ estadisticas.totalTickets }}</p>
+      <p>Pendientes: {{ estadisticas.pendientes }}</p>
+      <p>Resueltos: {{ estadisticas.resueltos }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <ion-item *ngFor="let ticket of tickets" (click)="verDetalleTickets(ticket.id)">
+      {{ ticket.title }}
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+
