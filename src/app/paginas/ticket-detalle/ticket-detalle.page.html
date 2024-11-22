@@ -1,0 +1,52 @@
+
+<ion-content>
+  <app-header></app-header>
+
+<div class="ticket-detail">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ ticket.title }}</ion-card-title>
+      <ion-card-subtitle>
+        <ion-badge [color]="getBadgeColor()">{{ ticket.status }}</ion-badge>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-label>Descripción</ion-label>
+          <ion-text slot="end">{{ ticket.description }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Prioridad</ion-label>
+          <ion-text slot="end">{{ ticket.priority }}</ion-text>
+        </ion-item>
+
+        <ion-item>
+          <ion-label>Fecha de Creación</ion-label>
+          <ion-text slot="end">{{ ticket.createdAt | date:'medium' }}</ion-text>
+        </ion-item>
+
+        <ion-item *ngIf="ticket.location">
+          <ion-label>Ubicación</ion-label>
+          <ion-text slot="end">{{ ticket.location }}</ion-text>
+        </ion-item>
+      </ion-list>
+
+      <div *ngIf="ticket.attachments && ticket.attachments.length > 0" class="attachments-section">
+        <h2>Archivos Adjuntos</h2>
+        <ion-list>
+          <ion-item *ngFor="let attachment of ticket.attachments">
+            <ion-icon name="document-outline" slot="start"></ion-icon>
+            <ion-label>{{ getFileName(attachment) }}</ion-label>
+            <ion-button fill="clear" (click)="descargaArchivos(attachment)">
+              <ion-icon name="download-outline"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</div>
+</ion-content>

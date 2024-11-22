@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './pantalla-admin.page.html',
   styleUrls: ['./pantalla-admin.page.scss'],
 })
-export class PantallaAdminPage implements OnInit {
+export class PantallaAdminPage  {
 
   constructor() { }
 

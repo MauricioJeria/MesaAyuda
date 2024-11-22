@@ -11,6 +11,7 @@ import { usuarioIn } from 'src/app/models/usuario.models';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  usuarioAutenticado: boolean = false;
   nombreUsuario: string  | null = null;
   color: string;
 
@@ -24,7 +25,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.authService.user$.subscribe((usuario) => {
-      this.nombreUsuario = usuario?.usuario || null;
+      if (usuario){
+        this.usuarioAutenticado = true;
+        this.nombreUsuario = usuario.usuario;
+      }else{
+        this.usuarioAutenticado = false;
+        this.nombreUsuario = null;
+      }
+
     });
   }
 
@@ -39,17 +47,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
         },
         {
           text: 'Cerrar Sesión',
-          handler: () => {
-            this.authService. logout();
+          handler: async () => {
+            await this.authService.logout();
+
+            this.usuarioAutenticado = false;
+            this.nombreUsuario = null;
             this.router.navigate(['/iniciosesion']);
-            this.alertaCierreSesion(
-              'Cierre de Sesión',
-              'Has salido de la Aplicación'
-            );
+
+            this.alertaCierreSesion('Cierre de Sesión', 'Has salido de la Aplicación');
           },
         },
       ],
     });
+
     await alert.present();
   }
 

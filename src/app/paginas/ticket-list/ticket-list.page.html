@@ -1,16 +1,81 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Lista Tickets Pendientes</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">TicketList</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-segment [(ngModel)]="selecionSegmentos">
+    <ion-segment-button value="en_progreso">
+      <ion-label>En Progreso</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="resuelto">
+      <ion-label>Resueltos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div *ngIf="selecionSegmentos === 'en_progreso'">
+    <ion-list *ngIf="ticketPendiente.length > 0; else noTicketsPendientes">
+      <ion-item-sliding *ngFor="let ticket of ticketPendiente">
+        <ion-item>
+          <ion-label>
+            <h2>{{ ticket.title }}</h2>
+            <p>{{ ticket.description }}</p>
+            <ion-text color="warning">
+              <p>{{ ticket.priority }}</p>
+            </ion-text>
+            <ion-text color="medium">
+              <p>{{ ticket.createdAt | date:'short' }}</p>
+            </ion-text>
+          </ion-label>
+          <ion-badge color="warning" slot="end">{{ ticket.status }}</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="primary" (click)="detalleTicket(ticket)">
+            Ver Detalles
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+  <div *ngIf="selecionSegmentos === 'resuelto'">
+    <ion-list *ngIf="ticketResuelto.length > 0; else noTicketsResueltos">
+      <ion-item-sliding *ngFor="let ticket of ticketResuelto">
+        <ion-item>
+          <ion-label>
+            <h2>{{ ticket.title }}</h2>
+            <p>{{ ticket.description }}</p>
+            <ion-text color="success">
+              <p>{{ ticket.priority }}</p>
+            </ion-text>
+            <ion-text color="medium">
+              <p>{{ ticket.createdAt | date:'short' }}</p>
+            </ion-text>
+          </ion-label>
+          <ion-badge color="success" slot="end">{{ ticket.status }}</ion-badge>
+        </ion-item>
+        <ion-item-options>
+          <ion-item-option color="primary" (click)="detalleTicket(ticket)">
+            Ver Detalles
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </div>
+
+  <ng-template #noTicketsPendientes>
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <ion-icon name="document-outline" class="no-tickets-icon"></ion-icon>
+        <p>No tienes tickets en progreso</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+
+  <ng-template #noTicketsResueltos>
+    <ion-card>
+      <ion-card-content class="ion-text-center">
+        <ion-icon name="checkmark-done-outline" class="no-tickets-icon"></ion-icon>
+        <p>No hay tickets resueltos aún</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
 </ion-content>
+<app-footer></app-footer>

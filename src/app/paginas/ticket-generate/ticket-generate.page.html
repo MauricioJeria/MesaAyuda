@@ -1,12 +1,5 @@
 
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Generar Nuevo Ticket</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header></app-header>
 
 <ion-content [fullscreen]="true">
   <form (ngSubmit)="onSubmitTicket()" #ticketForm="ngForm" class="ticket-form">
@@ -80,3 +73,4 @@
     </div>
   </form>
 </ion-content>
+<app-footer></app-footer>

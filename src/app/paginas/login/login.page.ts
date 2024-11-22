@@ -47,4 +47,6 @@ export class LoginPage {
   irARegistrar () {
     this.router.navigate(['/registrar']);
   }
+
+
 }

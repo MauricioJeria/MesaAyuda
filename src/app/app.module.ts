@@ -5,8 +5,6 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
-
-// Importaciones de Firebase
 import { importProvidersFrom } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
@@ -21,6 +19,8 @@ import { FormsModule } from '@angular/forms';
 import { PantallaAdminPage } from './paginas/pantalla-admin/pantalla-admin.page';
 import { PantallaColaboradorPage } from './paginas/pantalla-colaborador/pantalla-colaborador.page';
 import { TicketRevisionPage } from './paginas/ticket-revision/ticket-revision.page';
+import { TicketDetallePage } from './paginas/ticket-detalle/ticket-detalle.page';
+
 
 @NgModule({
   declarations: [AppComponent,
@@ -30,7 +30,11 @@ import { TicketRevisionPage } from './paginas/ticket-revision/ticket-revision.pa
     TicketListPage,
     PantallaAdminPage,
     PantallaColaboradorPage,
-    TicketRevisionPage
+    TicketRevisionPage,
+    TicketDetallePage
+
+
+
   ],
   imports: [
     BrowserModule,

@@ -6,7 +6,8 @@ import { IonicModule } from '@ionic/angular';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
-  imports: [CommonModule, IonicModule],
-  exports: [HeaderComponent, FooterComponent]
+  exports: [HeaderComponent, FooterComponent],
+  imports: [CommonModule, IonicModule]
+
 })
 export class CompartidosModule {}

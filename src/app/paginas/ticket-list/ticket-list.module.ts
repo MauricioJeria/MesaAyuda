@@ -13,7 +13,7 @@ import { TicketListPage } from './ticket-list.page';
     CommonModule,
     FormsModule,
     IonicModule
-  ],
-  declarations: [TicketListPage]
+  ]
+
 })
 export class TicketListPageModule {}

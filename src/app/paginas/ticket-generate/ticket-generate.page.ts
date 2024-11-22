@@ -9,7 +9,6 @@ interface Ticket {
   id?: string;
   title: string;
   description: string;
-  department: string;
   priority: string;
   location?: string;
   attachments?: string[];
@@ -27,7 +26,6 @@ export class TicketGeneratePage{
   ticket: Ticket = {
     title: '',
     description: '',
-    department: '',
     priority: '',
     createdAt: new Date(),
     status: 'abierto',

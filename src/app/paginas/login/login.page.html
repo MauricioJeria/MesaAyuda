@@ -1,15 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/login"></ion-back-button>
-    </ion-buttons>
-    <ion-title>Iniciar Sesion</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+<app-header></app-header>
+
 
 
 <div class="login-container">
-  <h2>Iniciar Sesión</h2>
+  <h2>TecProMin S.A</h2>
+  <h3>Inicie Sesion</h3>
   <form (ngSubmit)="iniciarSesion()" #loginForm="ngForm">
     <div>
       <label for="usuario">Email:</label>
@@ -35,4 +31,11 @@
       {{ isLoading ? 'Cargando...' : 'Iniciar Sesión' }}
     </button>
   </form>
+  <div class="button_slide slide_left" (click)="irARegistrar()">
+    Registrarse
+  </div>
+
 </div>
+<br><br>
+  <app-footer></app-footer>
+</ion-content>

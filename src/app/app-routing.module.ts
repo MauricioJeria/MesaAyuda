@@ -7,6 +7,7 @@ import { TicketListPage } from './paginas/ticket-list/ticket-list.page';
 import { PantallaAdminPage } from './paginas/pantalla-admin/pantalla-admin.page';
 import { PantallaColaboradorPage } from './paginas/pantalla-colaborador/pantalla-colaborador.page';
 import { TicketRevisionPage } from './paginas/ticket-revision/ticket-revision.page';
+import { TicketDetallePage } from './paginas/ticket-detalle/ticket-detalle.page';
 
 const routes: Routes = [
   {
@@ -41,7 +42,12 @@ const routes: Routes = [
   {
     path: 'ticket-revision',
     component: TicketRevisionPage
+  },
+  {
+    path: 'ticket-detalle',
+    component: TicketDetallePage
   }
+
 
 
 
