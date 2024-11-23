@@ -4,7 +4,6 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "site": "mesaayuda-8ba2a",
     "public": "public",
     "ignore": [
       "firebase.json",
