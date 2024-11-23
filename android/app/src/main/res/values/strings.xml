@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MesaAyuda</string>
+    <string name="title_activity_main">MesaAyuda</string>
+    <string name="package_name">com.MesaAyuda.app</string>
+    <string name="custom_url_scheme">com.MesaAyuda.app</string>
+</resources>
