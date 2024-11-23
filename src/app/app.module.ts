@@ -9,7 +9,6 @@ import { importProvidersFrom } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from '../environments/environment';
 import { CompartidosModule } from './compartidos/compartidos.module';
 import { LoginPage } from './paginas/login/login.page';
 import { RegistrarPage } from './paginas/registrar/registrar.page';
@@ -21,6 +20,7 @@ import { PantallaColaboradorPage } from './paginas/pantalla-colaborador/pantalla
 import { TicketRevisionPage } from './paginas/ticket-revision/ticket-revision.page';
 import { TicketDetallePage } from './paginas/ticket-detalle/ticket-detalle.page';
 import { RouterModule } from '@angular/router';
+import { environment } from 'src/environments/environment';
 
 
 @NgModule({
