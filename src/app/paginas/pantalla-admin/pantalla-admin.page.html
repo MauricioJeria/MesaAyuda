@@ -1,22 +1,47 @@
 <app-header></app-header>
 
 <ion-content>
-  <ion-card>
+
+  <ion-spinner *ngIf="loading" class="spinner-center"></ion-spinner>
+
+
+  <div *ngIf="!loading && errorMessage" class="error-message">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+
+  <ion-card *ngIf="!loading && !errorMessage">
     <ion-card-header>
       <ion-card-title>Estadísticas</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>Total: {{ estadisticas.totalTickets }}</p>
-      <p>Pendientes: {{ estadisticas.pendientes }}</p>
+      <p>Total Tickets: {{ estadisticas.totalTickets }}</p>
       <p>Resueltos: {{ estadisticas.resueltos }}</p>
+      <p>Pendientes: {{ estadisticas.pendientes.length }}</p>
     </ion-card-content>
   </ion-card>
 
-  <ion-list>
-    <ion-item *ngFor="let ticket of tickets" (click)="verDetalleTickets(ticket.id)">
-      {{ ticket.title }}
+
+  <ion-list *ngIf="!loading && !errorMessage">
+    <ion-item *ngFor="let ticket of tickets">
+      <ion-label>
+        <h2>{{ ticket.title }}</h2>
+        <p>{{ ticket.description }}</p>
+        <p>Estado: {{ ticket.resuelto ? 'Resuelto' : 'Pendiente' }}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button color="primary" (click)="verDetalleTickets(ticket.id)">
+          Ver Detalles
+        </ion-button>
+        <ion-button
+          *ngIf="!ticket.resuelto"
+          color="success"
+          (click)="actualizarEstado(ticket, true)"
+        >
+          Marcar Resuelto
+        </ion-button>
+      </ion-buttons>
     </ion-item>
   </ion-list>
 </ion-content>
-
-
+<app-footer></app-footer>

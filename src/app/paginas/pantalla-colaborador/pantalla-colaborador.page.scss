@@ -1,0 +1,60 @@
+ion-content {
+  padding: 20px;
+  background-color: #e0e0e0; // Gris claro de fondo
+}
+
+ion-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+ion-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+ion-col {
+  margin-bottom: 20px;
+}
+
+ion-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  ion-card-header {
+    color: #0056b3; // Azul corporativo
+    font-weight: bold;
+    text-align: center;
+  }
+
+  ion-card-content {
+    color: #333; // Texto gris oscuro
+    text-align: center;
+  }
+}
+
+ion-card-title {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+app-footer {
+  margin-top: 20px;
+  text-align: center;
+}
+
+app-header {
+  margin-bottom: 20px;
+}

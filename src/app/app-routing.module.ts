@@ -44,7 +44,7 @@ const routes: Routes = [
     component: TicketRevisionPage
   },
   {
-    path: 'ticket-detalle',
+    path: 'ticket-detalle/:id',
     component: TicketDetallePage
   }
 

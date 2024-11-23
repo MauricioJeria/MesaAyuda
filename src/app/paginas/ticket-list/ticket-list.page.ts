@@ -41,7 +41,10 @@ export class TicketListPage implements OnInit{
       ref => ref.where('status', 'in', ['abierto', 'en_progreso', 'resuelto'])).
       valueChanges({idField: 'id'}).pipe(
         map( tickets => {
-          this.ticketPendiente = tickets.filter(tickets => tickets.status === 'resuelto');
+          this.ticketPendiente = tickets.filter(
+            tickets => tickets.status === 'en_progreso');
+          this.ticketResuelto = tickets.filter(
+            tickets => tickets.status === 'resuelto');
         })
       )
       .subscribe();

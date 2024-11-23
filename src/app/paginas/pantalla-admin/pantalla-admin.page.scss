@@ -5,7 +5,20 @@ ion-content {
   align-items: center;
   justify-content: flex-start;
   padding: 20px;
-  background-color: #f9f9f9;
+  --background: #dcdcdc;
+  background-color: #dcdcdc !important;
+
+  .spinner-center {
+    margin: auto;
+    color: #007bff;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 1.2em;
+    text-align: center;
+    margin: 20px 0;
+  }
 
   ion-card {
     width: 100%;

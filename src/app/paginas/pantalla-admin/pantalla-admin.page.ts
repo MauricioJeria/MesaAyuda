@@ -20,7 +20,9 @@ export class PantallaAdminPage implements OnInit  {
     totalTickets: 0,
     pendientes: [],
     resueltos: 0
-    }
+    };
+    loading = true;
+    errorMessage = '';
 
 
 
@@ -32,7 +34,7 @@ export class PantallaAdminPage implements OnInit  {
 
   ngOnInit() {
     this.cargarTickets();
-    this.calcularEstadisticas();
+
   }
 
   calcularEstadisticas() {
@@ -41,16 +43,37 @@ export class PantallaAdminPage implements OnInit  {
     this.estadisticas.pendientes = this.tickets.filter(ticket => !ticket.resuelto); // Arreglo de tickets pendientes
   }
 
-    cargarTickets() {
-      this.TicketService.obtenerTickets().subscribe((tickets: Ticket[]) => {
+  cargarTickets() {
+    this.loading = true;
+    this.errorMessage = '';
+    this.TicketService.obtenerTickets().subscribe({
+      next: (tickets: Ticket[]) => {
         this.tickets = tickets;
         this.calcularEstadisticas();
-      });
-    }
+        this.loading = false;
+      },
+      error: (err) => {
+        this.errorMessage = 'Error al cargar los tickets. Inténtalo de nuevo más tarde.';
+        console.error(err);
+        this.loading = false;
+      },
+    });
+  }
 
 
   verDetalleTickets(ticketId: string){
     this.router.navigate(['/ticket-detalle', ticketId]);
+  }
+
+  actualizarEstado(ticket: Ticket, nuevoEstado: boolean) {
+    this.TicketService.actualizarTicket(ticket.id, { resuelto: nuevoEstado })
+      .then(() => {
+        console.log('Ticket actualizado con éxito');
+        this.cargarTickets();
+      })
+      .catch((err) => {
+        console.error('Error al actualizar el estado del ticket:', err);
+      });
   }
  }
 
