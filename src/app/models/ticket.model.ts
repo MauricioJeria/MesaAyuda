@@ -5,6 +5,7 @@ export interface Ticket {
   status: string;
   priority: string;
   resuelto: boolean;
+  createdBy: string;
   createdAt: string;
   location?: string;
   attachments?: any[];

@@ -12,6 +12,7 @@ import { Ticket } from 'src/app/models/ticket.model';
 
 
 
+
 @Component({
   selector: 'app-ticket-detalle',
   templateUrl: './ticket-detalle.page.html',

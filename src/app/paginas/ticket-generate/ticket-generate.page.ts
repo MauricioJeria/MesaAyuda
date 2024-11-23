@@ -64,7 +64,7 @@ export class TicketGeneratePage{
 
       await loading.dismiss();
       await this.presentToast('Ticket creado exitosamente', 'success');
-      this.router.navigate(['/tickets']);
+      this.router.navigate(['/pantalla-colaborador']);
     } catch (error) {
       await loading.dismiss();
       await this.presentToast('Error al crear ticket', 'danger');
